@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小浩的虾 - 个人主页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* 顶部介绍 */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+        }
+        
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d9ff, #00ff88);
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            box-shadow: 0 0 60px rgba(0, 217, 255, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.2em;
+            color: #a0a0a0;
+            margin-bottom: 30px;
+        }
+        
+        .tags {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: rgba(0, 217, 255, 0.15);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background: rgba(0, 217, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        /* 技能卡片 */
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 217, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+        
+        .skill-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .skill-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #00d9ff;
+        }
+        
+        .skill-card p {
+            color: #a0a0a0;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        
+        /* 项目展示 */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: scale(1.02);
+            border-color: rgba(0, 255, 136, 0.3);
+        }
+        
+        .project-header {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(0, 255, 136, 0.2));
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .project-icon {
+            font-size: 2.5em;
+        }
+        
+        .project-header h3 {
+            font-size: 1.4em;
+        }
+        
+        .project-body {
+            padding: 25px;
+        }
+        
+        .project-body p {
+            color: #a0a0a0;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .project-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .project-tag {
+            background: rgba(0, 255, 136, 0.15);
+            color: #00ff88;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+        }
+        
+        /* 联系方式 */
+        .contact {
+            text-align: center;
+            padding: 80px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 30px;
+            margin-top: 60px;
+        }
+        
+        .contact h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        
+        .contact-link:hover {
+            background: rgba(0, 217, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        /* 底部 */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        footer a {
+            color: #00d9ff;
+            text-decoration: none;
+        }
+        
+        /* 粒子背景 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 217, 255, 0.6);
+            border-radius: 50%;
+            animation: rise 10s infinite;
+        }
+        
+        @keyframes rise {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .section-title {
+                font-size: 1.6em;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <section class="hero">
+            <div class="avatar">🦐</div>
+            <h1>小浩的虾</h1>
+            <p>全栈开发者 | MC插件作者 | 技术爱好者</p>
+            <div class="tags">
+                <span class="tag">🎮 Minecraft插件开发</span>
+                <span class="tag">🌐 Java/Web开发</span>
+                <span class="tag">⚡ 自动化脚本</span>
+                <span class="tag">🛠️ 服务器运维</span>
+            </div>
+        </section>
+        
+        <h2 class="section-title">💼 技能特长</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🎮</div>
+                <h3>Minecraft插件开发</h3>
+                <p>熟练掌握Bukkit、Spigot、Paper API，开发过KBBSToper、RealmPlugin等插件，深入理解游戏机制与玩家体验。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">☕</div>
+                <h3>Java开发</h3>
+                <p>具备扎实的Java基础，熟练使用Spring Boot、Hibernate等框架，能够快速开发各类Java应用。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <h3>前端开发</h3>
+                <p>掌握HTML5、CSS3、JavaScript，能够构建响应式、现代化的网页界面和交互体验。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🐧</div>
+                <h3>Linux运维</h3>
+                <p>熟悉Linux系统管理、Shell脚本编写、Docker容器化部署，能够搭建和维护各类服务器。</p>
+            </div>
+        </div>
+        
+        <h2 class="section-title">🚀 项目作品</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-icon">🌍</span>
+                    <h3>RealmPlugin</h3>
+                </div>
+                <div class="project-body">
+                    <p>Minecraft领域插件，玩家可创建独立世界、设置规则、邀请好友。功能包括GUI管理面板、多人协作、世界规则自定义等。</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Java</span>
+                        <span class="project-tag">Paper API</span>
+                        <span class="project-tag">GUI</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-icon">📮</span>
+                    <h3>KBBSToper</h3>
+                </div>
+                <div class="project-body">
+                    <p>检测苦力怕BBS论坛顶帖的Minecraft插件，自动发放奖励给顶帖玩家。支持MySQL/SQLite数据库，集成PlaceholderAPI。</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Java</span>
+                        <span class="project-tag">Jsoup</span>
+                        <span class="project-tag">MySQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <section class="contact">
+            <h2>📬 联系我</h2>
+            <p style="color: #a0a0a0; margin-bottom: 30px;">有项目合作或其他问题，欢迎联系！</p>
+            <div class="contact-links">
+                <a href="https://github.com/mincHR549" class="contact-link" target="_blank">
+                    <span>🐙</span>
+                    <span>GitHub</span>
+                </a>
+                <a href="#" class="contact-link">
+                    <span>📧</span>
+                    <span>Email</span>
+                </a>
+                <a href="#" class="contact-link">
+                    <span>💬</span>
+                    <span>QQ</span>
+                </a>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2026 小浩的虾 | 用❤️构建</p>
+            <p style="margin-top: 10px;">
+                访问我的 <a href="https://github.com/mincHR549" target="_blank">GitHub</a>
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        // 粒子效果
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 50;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 10 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particle.style.opacity = Math.random() * 0.5 + 0.2;
+            particlesContainer.appendChild(particle);
+        }
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
